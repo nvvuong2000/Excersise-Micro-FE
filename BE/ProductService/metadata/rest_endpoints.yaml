@@ -1,0 +1,81 @@
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get All Categories
+  url: product/all_category
+  methods:
+    - GET
+  name: Get All Categories
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Featured Products
+  url: product/featured_products
+  methods:
+    - GET
+  name: Get Featured Products
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Filter Categories
+  url: product/filter_categories
+  methods:
+    - POST
+  name: Filter Categories
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Lasted Products
+  url: product/lasted_products
+  methods:
+    - GET
+  name: Get Lasted Products
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Product Detail
+  url: product/product_detail
+  methods:
+    - GET
+  name: Get Product Detail
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Relative Product
+  url: product/product_relative
+  methods:
+    - GET
+  name: Get Relative Product
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Products
+  url: product/products
+  methods:
+    - POST
+  name: Get Products
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Rated Products
+  url: product/rated_products
+  methods:
+    - GET
+  name: Get Rated Products
+  comment: null
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: Get Reviewed Products
+  url: product/reviewed_products
+  methods:
+    - GET
+  name: Get Reviewed Products
+  comment: null

@@ -1,0 +1,8 @@
+metadata
+migrations
+seeds
+
+docker-compose.yml
+.editorconfig
+.gitignore
+README.md

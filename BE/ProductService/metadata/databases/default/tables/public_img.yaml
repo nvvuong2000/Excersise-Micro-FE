@@ -1,0 +1,10 @@
+table:
+  schema: public
+  name: img
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - id
+        - url
+      filter: {}

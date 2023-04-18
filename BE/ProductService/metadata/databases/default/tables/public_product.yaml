@@ -1,0 +1,46 @@
+table:
+  schema: public
+  name: product
+object_relationships:
+  - name: category
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: category
+        insertion_order: null
+        column_mapping:
+          category_id: id
+array_relationships:
+  - name: list_img
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: img
+        insertion_order: null
+        column_mapping:
+          id: product_id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - availability
+        - category_id
+        - color
+        - count
+        - created_at
+        - description
+        - description_short
+        - discount
+        - id
+        - infomation
+        - is_featured
+        - is_relative
+        - name
+        - price
+        - rated
+        - reviews
+        - slug
+        - weight
+      filter: {}

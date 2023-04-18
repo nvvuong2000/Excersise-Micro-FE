@@ -1,0 +1,25 @@
+{
+  "name": "@msnt/productservice",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "docker:start": "docker compose up -d",
+    "docker:stop": "docker compose down -v",
+    "data:backup": "yarn hasura:migrate && yarn hasura:seed && yarn hasura:export",
+    "data:restore": "yarn hasura:restore",
+    "hasura:migrate": "node_modules/hasura-cli/hasura migrate create public --from-server --database-name default",
+    "hasura:seed": "node_modules/hasura-cli/hasura sd create seeds --database-name default --from-table img --from-table product --from-table category",
+    "hasura:export": "node_modules/hasura-cli/hasura metadata export",
+    "hasura:restore": "node_modules/hasura-cli/hasura metadata apply && node_modules/hasura-cli/hasura migrate apply --database-name default && node_modules/hasura-cli/hasura seed apply --database-name default && node_modules/hasura-cli/hasura metadata reload"
+  },
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "hasura-cli": "^2.9.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.4"
+  }
+}

@@ -1,0 +1,42 @@
+version: "3.6"
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    container_name: ${PROJECT}_postgresql
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    expose:
+      - "5432"
+    volumes:
+      - postgresql_db:/var/lib/postgresql/data
+    networks:
+      - product-network
+
+  graphql-engine:
+    image: hasura/graphql-engine:v2.8.0
+    container_name: ${PROJECT}_hasura
+    depends_on:
+      - postgres
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      HASURA_GRAPHQL_JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: ${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}
+      HASURA_GRAPHQL_LOG_LEVEL: ${AUTH_LOG_LEVEL}
+      HASURA_GRAPHQL_ENABLE_CONSOLE: ${HASURA_GRAPHQL_ENABLE_CONSOLE}
+      HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS: ${REMOTE_SCHEMA_PERMISSIONS}
+    ports:
+      - ${PRODUCT_PORT}:8080
+    networks:
+      - product-network
+
+networks:
+  product-network:
+    driver: bridge
+
+volumes:
+  postgresql_db:
