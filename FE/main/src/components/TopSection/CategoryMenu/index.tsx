@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { FC } from "react";
+import { IDepartment } from "..";
+import { Link } from "react-router-dom";
+type Props = {
+  department: IDepartment[];
+};
 
-const CategoryMemu = () => {
+const CategoryMemu: FC<Props> = ({ department }: Props): JSX.Element => {
   const onMenuClick = () => {
-    $('.hero__categories ul').slideToggle(400);
+    $(".hero__categories ul").slideToggle(400);
   };
 
   return (
@@ -12,20 +17,18 @@ const CategoryMemu = () => {
         <span>All Departments</span>
       </div>
       <ul>
-        <li><a href="#">Fresh Meat</a></li>
-        <li><a href="#">Vegetables</a></li>
-        <li><a href="#">Fruit & Nut Gifts</a></li>
-        <li><a href="#">Fresh Berries</a></li>
-        <li><a href="#">Ocean Foods</a></li>
-        <li><a href="#">Butter & Eggs</a></li>
-        <li><a href="#">Fastfood</a></li>
-        <li><a href="#">Fresh Onion</a></li>
-        <li><a href="#">Papayaya & Crisps</a></li>
-        <li><a href="#">Oatmeal</a></li>
-        <li><a href="#">Fresh Bananas</a></li>
+        {department &&
+          department.map((item: IDepartment, index: number) => {
+            return (
+              <li key={index}>
+                <Link to={`/shop?category=${item.id}`}>
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
       </ul>
     </div>
   );
 };
-
 export default CategoryMemu;
